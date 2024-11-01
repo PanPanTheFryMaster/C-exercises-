@@ -1,29 +1,31 @@
-// fib[0] = 0, fib[1] = 1, fib[i] = fib[i-2] + fib[i-1]
 #include <stdio.h>
+#include <stdlib.h>
+#define TARGET 9
 
-int fibonacci(int target);
+int fibonacci(int num);
 
 void main(){
-	int num = fibonacci(7);
-	printf("res recursive: %d\n", num);
+	int res = 0;
+	res = fibonacci(TARGET);
+	printf("Risultato: %d\n", res);
 
-	int temp = 0;
-	int a = 0;
-	int b = 1;
-	for (int i = 1; i < 7; i++){
-		temp = b;
-		b = a + b;
-		a = temp;
+	int array[10];
+	array[0] = 0;
+	array[1] = 1;
+	for (int i = 2; i <= TARGET; i++){
+		array[i] = array[i-1] + array[i-2];
 	}
-	printf("res iterativo: %d\n", b);
+	for (int i = 0; i <= TARGET; i++){
+		printf("%d: %d ",i, array[i]);
+	}
+	printf("\n");
+
 }
 
 
-int fibonacci(int target){
-	if (target == 0)
-		return 0;
-	if (target == 1)
-		return 1;
 
-	return fibonacci(target-1) + fibonacci(target-2);
+int fibonacci(int num){
+	if (num == 0) return 0;
+	if (num == 1) return 1;
+	return fibonacci(num-1) + fibonacci(num-2);
 }
