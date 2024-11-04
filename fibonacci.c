@@ -1,6 +1,7 @@
 #include <stdio.h>
-//a[i] = a[i-1] + a[i-2], a[0] = 0, a[1] = 1
-#define TARGET 10
+#include <stdlib.h>
+#define TARGET 5
+
 
 int fibonacci(int target);
 
@@ -9,18 +10,19 @@ void main(){
 	int b = 1;
 	int tmp = 0;
 	for (int i = 2; i <= TARGET; i++){
-		tmp = a + b;
-		a = b;
-		b = tmp;
+		tmp = b;
+		b = b + a;
+		a = tmp;
 	}
-	printf("Fibonacci iter: %d\n",b);	
- 	printf("Fibonacci rec: %d\n", fibonacci(TARGET));
+
+	printf("Fib iterative: %d\n", b);
+	
+	b = fibonacci(TARGET);
+	printf("Fib recursive: %d\n", b);
 }
 
 int fibonacci(int target){
 	if (target == 0) return 0;
 	if (target == 1) return 1;
-
 	return fibonacci(target-1) + fibonacci(target-2);
-
 }
