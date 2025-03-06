@@ -1,28 +1,32 @@
 #include <stdio.h>
-#include <stdlib.h>
-#define TARGET 5
+
+int fibonacci_rec(int target);
+
+int main() {
+    int a = 0;
+    int b = 1;
+    int fib = 0;
+    int target = 0;
+    printf("Enter target: ");
+    scanf("%d", &target);
 
 
-int fibonacci(int target);
+    for (int i = 1; i < target; i++) {
+        fib = a + b;
+        a = b;
+        b = fib;
+    }
 
-void main(){
-	int a = 0;
-	int b = 1;
-	int tmp = 0;
-	for (int i = 2; i <= TARGET; i++){
-		tmp = b;
-		b = b + a;
-		a = tmp;
-	}
+    printf("The iterative fibonacci number of index %d is: %d\n",target, fib);
 
-	printf("Fib iterative: %d\n", b);
-	
-	b = fibonacci(TARGET);
-	printf("Fib recursive: %d\n", b);
+    fib = fibonacci_rec(target);
+    printf("The recursive fibonacci number of index %d is: %d\n",target, fib);
+    return 0;
 }
 
-int fibonacci(int target){
-	if (target == 0) return 0;
-	if (target == 1) return 1;
-	return fibonacci(target-1) + fibonacci(target-2);
+int fibonacci_rec(int target) {
+
+    if(target == 0) {return 0;}
+    if (target == 1) {return 1;}
+    return fibonacci_rec(target-1) + fibonacci_rec(target-2);
 }

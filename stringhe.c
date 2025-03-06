@@ -1,33 +1,31 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void inverti_stringa(char *str);
-int len(char *str);
-void main(){
-	char str[255];
-	printf("Inserisci stringa: ");
-	fgets(str, sizeof(str), stdin);
-	inverti_stringa(str);
-	fprintf(stdout, "str: %s\n", str);
+int my_strlen(char str[]);
+
+int main() {
+  char str[100];
+  printf("Enter a string: ");
+  fgets(str, sizeof(str), stdin);
+
+  const int size = my_strlen(str);
+  printf("Lunghezza della stringa: %d\n", size);
+
+  // Inverti la stringa
+  int last = size - 1;
+  for (int first = 0; first < last; first++, last--) {
+    char tmp = str[first];
+    str[first] = str[last];
+    str[last] = tmp;
+  }
+
+  printf("Stringa invertita: %s\n", str);
+  return 0;
 }
 
-void inverti_stringa(char *str){
-	int size = len(str);
-	char tmp;
-	printf("Size: %d\n", size);
-	int i = 0, j = size;
-	while (i < j){
-		tmp = str[i];
-		str[i] = str[j];
-		str[j] = tmp;
-		i++;
-		j--;
-	}
-
-}
-
-int len(char *str){
-	int i = 0;
-	while (str[i] != '\0') i++;
-	return i-1;
+int my_strlen(char str[]) {
+  int count = 0;
+  while (str[count] != '\0') {
+    count++;
+  }
+  return count-1;
 }

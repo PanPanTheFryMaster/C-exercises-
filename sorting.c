@@ -2,44 +2,33 @@
 #include <stdlib.h>
 #include <time.h>
 
-void visualizza_array(int *array, int size);
-void ordina_array(int *array, int size);
+void bubble_sort(int *arr, int size);
 
-void main(){
-	srand(time(NULL));
-	int array[20];
-	int size = sizeof(array)/sizeof(array[0]);
-	for (int i = 0; i < 20; i++){
-		array[i] = rand() % 21;
-	}
-	visualizza_array(array, size);
-	
-	ordina_array(array, size);
-	printf("Visualizzazione dopo ordinamento: ");
-	ordina_array(array, size);
-	visualizza_array(array, size);
+int main(){
+  int array[10];
+  srand(time(NULL));
+  for (int i = 0; i < 10; i++){
+    array[i] = rand() % 101;
+  }
+  for (int i = 0; i < 10; i++){
+    printf("%d ", array[i]);
+  }
+  printf("\n\n");
+  bubble_sort(array, 10);
+
+  for (int i = 0; i < 10; i++){
+    printf("%d ", array[i]);
+  }
 }
 
-
-void visualizza_array(int *array, int size){
-	for (int i = 0; i < size; i++){
-		printf(" %d ", array[i]);
-	}
-	printf("\n");
-}
-
-
-void ordina_array(int *array, int size){
-	int tmp = 0;
-	for (int i = 0; i < size-1; i++){
-		for (int j = 0; j < size -i-1; j++){
-			if (array[j] > array[j+1]){
-				tmp = array[j];
-				array[j] = array[j+1];
-				array[j+1] = tmp;
-			}
-		}
-
-	}
-
+void bubble_sort(int *arr, int size){
+  for (int i = 0; i < size - 1; i++){
+    for (int j =0; j < size - i - 1; j++){
+      if (arr[j] > arr[j+1]){
+        int temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }
+    }
+  }
 }
